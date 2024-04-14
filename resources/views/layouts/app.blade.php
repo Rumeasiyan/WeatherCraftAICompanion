@@ -18,19 +18,20 @@
 
     <!-- custom css -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 
-<body>
-    <!-- Page Content -->
-    <main>
-        {{ $slot }}
-    </main>
+<body class="grid items-center">
 
-    <footer class="footer text-center mt-4 mb-4 text-xs text-black">
+    {{ $slot }}
+
+    <footer class="footer text-center mb-4 mt-4 text-xs text-black relative ">
         <p>© 2024 WeatherCraft AI Companion. All Rights Reserved.</p>
         <p>Designed and developed by <a href="http://rumeasiyan.com">Rumeasiyan</a> </p>
     </footer>
-    </div>
+
+    <script src="{{asset('js/script.js')}}"></script>
 
 </body>
 
