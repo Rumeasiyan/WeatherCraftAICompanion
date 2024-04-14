@@ -1,0 +1,142 @@
+body {
+    background-image: url("/img/main-bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.w-1vw {
+    width: 100vw;
+}
+
+.w-1\/2vw {
+    width: 50vw;
+}
+
+.w-32vw {
+    width: 32vw;
+}
+
+.w-40vw {
+    width: 40vw;
+}
+
+.w-4\/3vw {
+    width: 75vw;
+}
+
+.w-1\/4vw {
+    width: 25vw;
+}
+
+.w-1\/3vw {
+    width: 33.333333vw;
+}
+
+.h-1\/2vh {
+    height: 50vh;
+}
+
+.h-3\/4vh {
+    height: 78vh;
+}
+
+.h-1\/3vh {
+    height: 33.333333vh;
+}
+
+.h-1\/4vh {
+    height: 25vh;
+}
+
+.h-1vh {
+    height: 100vh;
+}
+
+.container-blured {
+    background: rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(12.5px);
+    backdrop-filter: blur(12.5px);
+    min-height: 550px;
+}
+
+.container-boxshadow {
+    box-shadow: 15px 15px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.container-right-text {
+    color: #69525e;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-align: justify;
+}
+
+.container-right,
+.container-left {
+    padding: 48px;
+    align-content: space-around;
+    padding-bottom: 2px;
+    padding-top: 2px;
+}
+
+.container-right-image {
+    padding: 20px;
+}
+
+.container-left p {
+    text-align: right;
+    font-size: larger;
+    align-items: end;
+    font-weight: bold;
+}
+
+.container-right {
+    margin-right: 20px;
+    min-width: 500px;
+}
+
+.container-left {
+    margin-left: 20px;
+}
+
+@media screen and (max-width: 1024px) {
+    .container-right {
+        margin-right: 0px;
+        min-width: 45vw;
+    }
+
+    .container-left {
+        margin-left: 0px;
+    }
+
+    .container-left,
+    .container-right {
+        padding: 24px;
+    }
+}
+
+form {
+    gap: 80px;
+}
+
+@media screen and (max-width: 768px) {
+    .container-left,
+    .container-right {
+        padding: 24px;
+        width: 100%;
+        margin: auto;
+        height: 80vh;
+    }
+
+    .container-right {
+        margin-top: 70px;
+        justify-content: space-around;
+    }
+
+    form {
+        width: 100%;
+
+    }
+}

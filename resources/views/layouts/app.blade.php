@@ -14,30 +14,22 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
-<body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
-        @include('layouts.navigation')
+<body>
+    <!-- Page Content -->
+    <main>
+        {{ $slot }}
+    </main>
 
-        <!-- Page Heading -->
-        @if (isset($header))
-        <header class="bg-white shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                {{ $header }}
-            </div>
-        </header>
-        @endif
-
-        <!-- Page Content -->
-        <main>
-            {{ $slot }}
-        </main>
-
-        <footer class="footer text-center mt-4 mb-4 text-xs text-black">
-            <p>© 2024 WeatherCraft AI Companion. All Rights Reserved.</p>
-            <p>Designed and developed by <a href="http://rumeasiyan.com">Rumeasiyan</a> </p>
-        </footer>
+    <footer class="footer text-center mt-4 mb-4 text-xs text-black">
+        <p>© 2024 WeatherCraft AI Companion. All Rights Reserved.</p>
+        <p>Designed and developed by <a href="http://rumeasiyan.com">Rumeasiyan</a> </p>
+    </footer>
     </div>
 
 </body>

@@ -14,25 +14,20 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
-<body class="font-sans text-gray-900 antialiased">
-    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-        <div>
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </div>
+<body class="grid items-center">
 
-        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-            {{ $slot }}
-        </div>
+    {{ $slot }}
 
-        <footer class="footer text-center mt-4 mb-4 text-xs text-black">
-            <p>© 2024 WeatherCraft AI Companion. All Rights Reserved.</p>
-            <p>Designed and developed by <a href="http://rumeasiyan.com">Rumeasiyan</a> </p>
-        </footer>
-    </div>
+    <footer class="footer text-center mb-4 mt-4 text-xs text-black relative ">
+        <p>© 2024 WeatherCraft AI Companion. All Rights Reserved.</p>
+        <p>Designed and developed by <a href="http://rumeasiyan.com">Rumeasiyan</a> </p>
+    </footer>
 
 
 </body>
