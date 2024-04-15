@@ -1,4 +1,5 @@
-<div class="  bg-white h-3/4vh container-boxshadow container-left content-around grid rounded-none h-100 justify-start">
+<div
+    class="  bg-white h-3/4vh container-boxshadow container-left content-around grid rounded-ss-lg rounded-es-lg h-100 justify-start">
     <div>
         <div class=" container-right-text">join us <br /> <br /> </div>
         <div class="container-right-text">Plan your trip with us, where every forecast becomes an adventure!

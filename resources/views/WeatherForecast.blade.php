@@ -25,14 +25,14 @@
                             title="Location Search" aria-placeholder="Enter a Location" />
                         <div class="w-full flex justify-center items-center mt-4">
 
-                            <x-primary-button onclick=" getWeather()">SEARCH</x-primary-button>
+                            <x-primary-button onclick="getWeather()">SEARCH</x-primary-button>
                         </div>
                         <div class="w-full text-center text-red-900 danger-text-weather font-bold hidden">
                             !! ERROR FETCHING WEATHER DATA, TRY AGAIN
                         </div>
                     </div>
                 </div>
-                <div class="flex justify-between flex-col loader loader-weather">
+                <div class="flex justify-between flex-col loader loader-weather weather-content">
                     <div>
                         <div class="flex justify-around items-center">
                             <div class="weather-icon-main">
@@ -165,14 +165,17 @@
             <x-white-container-right>
 
                 <div class="justify-between mb-0">
-                    <div class="container-right-text">Recomended activities based on weather
-                        <br><br>
-                    </div>
-                    <div class="container-right-text text-right mb-0">
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <button type="submit">LOGOUT</button>
-                        </form>
+                    <div class="flex w-full justify-between">
+                        <div class="container-right-text mr-10">Recomended activities based on weather
+                            <br><br>
+                        </div>
+                        <div class="container-right-text text-right mb-0">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit"
+                                    class="m-0 inline-flex px-4 py-2 bg-black h-max border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest  hover:bg-white hover:text-black focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">LOGOUT</button>
+                            </form>
+                        </div>
                     </div>
                     <div class="w-full text-center text-red-900 danger-text-rec font-bold hidden">
                         !! ERROR FETCHING RECOMMENDATION DATA, TRY AGAIN

@@ -141,17 +141,21 @@ form {
 }
 
 .activity-recommedation-box-group {
-    background: rgba(217, 217, 217, 0.27);
+    background: rgba(255, 255, 255, 0.782);
+    backdrop-filter: blur(12.5px);
+    -webkit-backdrop-filter: blur(12.5px);
     margin: 25px auto;
     width: 100%;
     overflow: scroll;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding: 10px;
     position: relative;
+    scrollbar-width: thin;
+    scrollbar-color: #000000 #ffffff00;
 }
 
 .activity-recommendation-box-btn {
@@ -162,6 +166,11 @@ form {
     cursor: pointer;
 }
 
+.activity-recommendation-box-btn:hover {
+    background: #000000;
+    color: #ffffff;
+}
+
 .activity-recommendation-box-btn-archieve {
     background: #ffffff;
     border-radius: 37px;
@@ -170,10 +179,12 @@ form {
     cursor: pointer;
 }
 
+.activity-recommendation-box-btn-archieve:hover {
+    background: #000000;
+    color: #ffffff;
+}
+
 .weather-forecast-group {
-    background: rgba(217, 217, 217, 0.27);
-    backdrop-filter: blur(12.5px);
-    -webkit-backdrop-filter: blur(12.5px);
     margin: 25px auto;
     width: 100%;
     overflow-x: scroll;
@@ -184,6 +195,16 @@ form {
     gap: 20px;
     padding: 10px;
     max-width: 350px;
+    border-radius: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #000000 #ffffff00;
+}
+
+.weather-content {
+    background: rgba(255, 255, 255, 0.782);
+    backdrop-filter: blur(12.5px);
+    -webkit-backdrop-filter: blur(12.5px);
+    border-radius: 10px;
 }
 
 option {
@@ -206,6 +227,7 @@ option {
     align-items: center;
     display: flex;
     justify-content: space-around;
+    border-radius: 10px;
 }
 
 .activity-recomendation-box-text {
