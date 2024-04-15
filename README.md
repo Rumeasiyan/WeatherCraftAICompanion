@@ -15,24 +15,24 @@ Traditional weather applications fail to assist tourists in planning alternative
 
 ## Features
 
-**Location-Based Weather Display:** Automatically displays current weather data based on user's location using ipinfo API, GeoCoder API, and OpenWeatherMap's Current Weather API. <br />
-**5-Day Weather Forecast:** Display the 5-day weather forecast using "3-Hour Forecast 5-Days" API from OpenWeatherMap for the user's detected location. <br />
-**Activity Recommendations:** Displays the recommended activities based on the location and weather data using Google Gemini API. <br />
-**Customizable Location:** Allow users to access weather information, forecasts, and recommended activities for their preferred locations. <br />
-**Save Activities:** Allow users to save recommended activities in their profile. <br />
+1. **Location-Based Weather Display:** Automatically displays current weather data based on user's location using ipinfo API, GeoCoder API, and OpenWeatherMap's Current Weather API. <br />
+2. **5-Day Weather Forecast:** Display the 5-day weather forecast using "3-Hour Forecast 5-Days" API from OpenWeatherMap for the user's detected location. <br />
+3. **Activity Recommendations:** Displays the recommended activities based on the location and weather data using Google Gemini API. <br />
+4. **Customizable Location:** Allow users to access weather information, forecasts, and recommended activities for their preferred locations. <br />
+5. **Save Activities:** Allow users to save recommended activities in their profile. <br />
 
 ## Technology Selection
 
-**LARAVEL** (blade, breeze) <br />
-**FRONTEND** (HTML, CSS, JavaScript)  <br />
-**TAILWIND CSS** <br />
-**MySQL** <br />
+1. **LARAVEL** (blade, breeze) <br />
+2. **Frontend** (HTML, CSS, JavaScript)  <br />
+3. **Tailwind CSS** <br />
+4. **MySQL** <br />
 
 ## API Selection
 
-**GOOGLE GEMINI API** <br />
-**OPENWEATHERMAP API** (current weather, 3-hour forecast 5-days, geocoder API) <br />
-**IPINFO** <br />
+1. **Goolge Gemini API** <br />
+2. **OpenWeatherMap API** (current weather, 3-hour forecast 5-days, geocoder API) <br />
+3. **IpInfo** <br />
 
 ## System Flow
 
@@ -44,7 +44,7 @@ Traditional weather applications fail to assist tourists in planning alternative
 
 ```bash
 git clone https://github.com/Rumeasiyan/WeatherCraftAICompanion.git
-cd weather-craft-ai-companion
+cd WeatherCraftAICompanion
 ```
 
 2. **Install Dependencies:**
