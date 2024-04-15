@@ -31,4 +31,13 @@ return [
         ],
     ],
 
+    'weather_api_key' => [
+        'key' => env('WEATHER_API_KEY'),
+        'city' => env('WEATHER_CITY_KEY'),
+    ],
+
+    'google_gemini' => [
+        'key' => env('GOOGLE_GEMINI_KEY'),
+    ],
+
 ];

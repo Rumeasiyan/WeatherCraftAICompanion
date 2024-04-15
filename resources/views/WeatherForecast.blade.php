@@ -216,7 +216,13 @@
                     </div>
                 </div>
             </x-white-container-right>
-
         </div>
     </div>
 </x-app-layout>
+
+<script>
+const apikeys = @json($apikeys);
+const weatherApiKey = apikeys.weatherApiKey;
+const weatherCityKey = apikeys.weatherCityKey;
+const googleAPIKey = apikeys.googleAPIKey;
+</script>

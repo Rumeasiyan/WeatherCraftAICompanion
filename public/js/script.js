@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", async function () {
-    const weatherCityKey = "489e843cac936a";
     try {
         const errorTextAI = document.querySelectorAll(".danger-text-rec")[0];
         errorTextAI.classList.add("hidden");
@@ -20,7 +19,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         );
         const weatherCityData = await weatherCityResponse.json();
         console.log(weatherCityData);
-        const weatherApiKey = "8e317d3379799555378eb45ac60b4a65";
         weatherLocation(weatherApiKey, weatherCityData.city);
     } catch (error) {
         console.error(error);
@@ -94,7 +92,6 @@ getWeather = async () => {
     errorTextWeather.classList.add("hidden");
     const weatherCity = document.getElementById("locationSearchText").value;
     console.log(weatherCity);
-    const weatherApiKey = "8e317d3379799555378eb45ac60b4a65";
     weatherLocation(weatherApiKey, weatherCity);
 };
 
@@ -197,7 +194,7 @@ async function activityRecommendation(dataWeather, cityName) {
         const windSpeed = dataWeather.wind.speed;
         const humidity = dataWeather.main.humidity;
 
-        const AiApiKey = "AIzaSyCkanKBO_r4tOauowtH6clpKv9yDqsHPPA";
+        const AiApiKey = googleAPIKey;
         const AIUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${AiApiKey}`;
 
         const activityResponse = await fetch(AIUrl, {
@@ -294,3 +291,22 @@ async function activityRecommendation(dataWeather, cityName) {
         errorTextRec.classList.remove("hidden");
     }
 }
+
+
+const saveActivity = (event) => {
+    const activityBox = event.target.parentElement;
+    const activityTitle = activityBox.querySelector(
+        ".activity-recomendation-box-title"
+    ).innerText;
+    const activityContent = activityBox.querySelector(
+        ".activity-recomendation-box-content"
+    ).innerText;
+
+    console.log(activityTitle, activityContent);
+}
+
+const saveBtn = document.querySelectorAll(".activity-recommendation-box-btn");
+
+saveBtn.forEach((btn) => {
+    btn.addEventListener("click", saveActivity);
+});
