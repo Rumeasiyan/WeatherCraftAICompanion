@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class SavedActivity extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['user_id', 'activity', 'description'];
 }

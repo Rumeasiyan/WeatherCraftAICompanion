@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", async function () {
+async function getweatherforuserlocation() {
     try {
         const errorTextAI = document.querySelectorAll(".danger-text-rec")[0];
         errorTextAI.classList.add("hidden");
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         const errorTextRec = document.querySelectorAll(".danger-text-rec")[0];
         errorTextRec.classList.remove("hidden");
     }
-});
+}
 
 async function weatherLocation(weatherApiKey, weatherCity) {
     let lat;
@@ -285,6 +285,8 @@ async function activityRecommendation(dataWeather, cityName) {
 
         const loaderai = document.querySelectorAll(".loader-ai")[0];
         loaderai.style.filter = "none";
+
+        addEventListenerstoSaveBtn();
     } catch (error) {
         console.error(error);
         const errorTextRec = document.querySelectorAll(".danger-text-rec")[0];
@@ -292,8 +294,19 @@ async function activityRecommendation(dataWeather, cityName) {
     }
 }
 
+async function addEventListenerstoSaveBtn() {
+    const saveBtn = document.querySelectorAll(
+        ".activity-recommendation-box-btn"
+    );
 
-const saveActivity = (event) => {
+    for (let i = 0; i < saveBtn.length; i += 1) {
+        saveBtn[i].addEventListener("click", saveActivity);
+    }
+}
+
+addEventListenerstoSaveBtn();
+
+async function saveActivity(event) {
     const activityBox = event.target.parentElement;
     const activityTitle = activityBox.querySelector(
         ".activity-recomendation-box-title"
@@ -303,10 +316,156 @@ const saveActivity = (event) => {
     ).innerText;
 
     console.log(activityTitle, activityContent);
+
+    const csrfToken = document
+        .querySelector('meta[name="csrf-token"]')
+        .getAttribute("content");
+    // reference: https://www.youtube.com/watch?v=FZusuCbU7_Q
+    // reference: https://stackoverflow.com/questions/32738763/laravel-csrf-token-mismatch-for-ajax-post-request
+    const saveActivityData = await fetch("/save/activity", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": csrfToken,
+        },
+        body: JSON.stringify({
+            activity: activityTitle,
+            description: activityContent,
+        }),
+    });
+
+    const saveActivityDataResponse = await saveActivityData.json();
+
+    console.log(saveActivityDataResponse);
+    alert("Activity saved successfully!");
 }
 
-const saveBtn = document.querySelectorAll(".activity-recommendation-box-btn");
+async function getSavedActivities() {
+    const activityRecommendationGroup = document.querySelectorAll(
+        ".activity-recommedation-box-group"
+    )[0];
+    const loaderaidiv = document.querySelectorAll(".loader-ai")[0];
+    loaderaidiv.style.filter = "blur(12px)";
+    activityRecommendationGroup.innerHTML = "";
 
-saveBtn.forEach((btn) => {
-    btn.addEventListener("click", saveActivity);
-});
+    const response = await fetch("/get/saved/activities");
+    const activitiesText = await response.json();
+
+    console.log(activitiesText);
+
+    for (let i = 0; i < activitiesText.length; i += 1) {
+        const activity = activitiesText[i].activity;
+        const description = activitiesText[i].description;
+
+        const activityRecommendationBox = document.createElement("div");
+        activityRecommendationBox.classList.add("activity-recomendation-box");
+        activityRecommendationBox.classList.add("justify-around");
+        activityRecommendationBox.classList.add("flex");
+
+        activityRecommendationBox.innerHTML = `
+    <div class="activity-recomendation-box-text">
+        <div class="activity-recomendation-box-title font-bold">${activity}</div>
+        <div class="activity-recomendation-box-content">${description}</div>
+    </div>
+    <div class="activity-recommendation-box-btn-archieve">ARCHIEVE</div>
+    `;
+        activityRecommendationGroup.appendChild(activityRecommendationBox);
+    }
+
+    loaderaidiv.style.filter = "none";
+
+    addEventListenerstoArchieveBtn();
+}
+
+async function addEventListenerstoArchieveBtn() {
+    const archieveBtn = document.querySelectorAll(
+        ".activity-recommendation-box-btn-archieve"
+    );
+
+    for (let i = 0; i < archieveBtn.length; i += 1) {
+        archieveBtn[i].addEventListener("click", archieveActivity);
+    }
+}
+
+addEventListenerstoArchieveBtn();
+
+async function archieveActivity(event) {
+    const activityToggle = document.getElementById("activity-toggle");
+    activityToggle.removeEventListener("click", getSavedActivities);
+    const loaderaidiv = document.querySelectorAll(".loader-ai")[0];
+    loaderaidiv.style.filter = "blur(12px)";
+    const activityBox = event.target.parentElement;
+    const activityTitle = activityBox.querySelector(
+        ".activity-recomendation-box-title"
+    ).innerText;
+    const activityContent = activityBox.querySelector(
+        ".activity-recomendation-box-content"
+    ).innerText;
+
+    console.log(activityTitle, activityContent);
+
+    const csrfToken = document
+        .querySelector('meta[name="csrf-token"]')
+        .getAttribute("content");
+    // reference: https://www.youtube.com/watch?v=FZusuCbU7_Q
+    // reference: https://stackoverflow.com/questions/32738763/laravel-csrf-token-mismatch-for-ajax-post-request
+    const archieveActivityData = await fetch("/archieve/activity", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": csrfToken,
+        },
+        body: JSON.stringify({
+            activity: activityTitle,
+            description: activityContent,
+        }),
+    });
+
+    loaderaidiv.style.filter = "none";
+    alert("Activity archieved successfully!");
+    getSavedActivities();
+
+    activityToggle.innerHTML = "VIEW ARCHIEVED ACTIVITIES";
+    activityToggle.addEventListener("click", viewArchievedData);
+}
+
+async function viewArchievedData() {
+    const activityToggle = document.getElementById("activity-toggle");
+    activityToggle.removeEventListener("click", viewArchievedData);
+    const activityRecommendationGroup = document.querySelectorAll(
+        ".activity-recommedation-box-group"
+    )[0];
+    const loaderaidiv = document.querySelectorAll(".loader-ai")[0];
+    loaderaidiv.style.filter = "blur(12px)";
+    activityRecommendationGroup.innerHTML = "";
+
+    const response = await fetch("/get/archieved/activities");
+    const activitiesText = await response.json();
+
+    console.log(activitiesText);
+
+    for (let i = 0; i < activitiesText.length; i += 1) {
+        const activity = activitiesText[i].activity;
+        const description = activitiesText[i].description;
+
+        const activityRecommendationBox = document.createElement("div");
+        activityRecommendationBox.classList.add("activity-recomendation-box");
+        activityRecommendationBox.classList.add("justify-around");
+        activityRecommendationBox.classList.add("flex");
+
+        activityRecommendationBox.innerHTML = `
+    <div class="activity-recomendation-box-text">
+        <div class="activity-recomendation-box-title font-bold">${activity}</div>
+        <div class="activity-recomendation-box-content">${description}</div>
+    </div>
+    <div class="activity-recommendation-box-btn">SAVE</div>
+        `;
+        activityRecommendationGroup.appendChild(activityRecommendationBox);
+    }
+
+    loaderaidiv.style.filter = "none";
+    addEventListenerstoSaveBtn();
+
+    activityToggle.innerHTML = "VIEW SAVED ACTIVITIES";
+    activityToggle.addEventListener("click", getSavedActivities);
+}

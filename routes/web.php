@@ -17,7 +17,14 @@ Route::get('/WeatherForecast', [weatherForecastController::class, 'index'])->mid
 Route::get('/test', function () {
     return "Hello World";
 })->middleware(['auth', 'verified'])->name('test');
-// Route::redirect('/dashboard', route('/WeatherForecast'));
+
+Route::post('/save/activity', [weatherForecastController::class, 'saveActivity'])->middleware(['auth', 'verified'])->name('save.activity');
+
+Route::get('/get/saved/activities', [weatherForecastController::class, 'getSavedActivities'])->middleware(['auth', 'verified'])->name('get.saved.activities');
+
+Route::post('/archieve/activity', [weatherForecastController::class, 'archieveActivity'])->middleware(['auth', 'verified'])->name('archieve.activity');
+
+Route::get('/get/archieved/activities', [weatherForecastController::class, 'getArchievedActivities'])->middleware(['auth', 'verified'])->name('get.archieved.activities');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

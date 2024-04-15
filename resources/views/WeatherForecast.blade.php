@@ -178,6 +178,7 @@
                         !! ERROR FETCHING RECOMMENDATION DATA, TRY AGAIN
                     </div>
                 </div>
+
                 <div class="activity-recommedation-box-group loader loader-ai">
                     <div class=" activity-recomendation-box flex justify-around">
                         <div class="activity-recomendation-box-text">
@@ -225,4 +226,5 @@ const apikeys = @json($apikeys);
 const weatherApiKey = apikeys.weatherApiKey;
 const weatherCityKey = apikeys.weatherCityKey;
 const googleAPIKey = apikeys.googleAPIKey;
+getweatherforuserlocation();
 </script>

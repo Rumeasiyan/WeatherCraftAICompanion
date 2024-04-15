@@ -151,9 +151,18 @@ form {
     flex-direction: column;
     gap: 10px;
     padding: 10px;
+    position: relative;
 }
 
 .activity-recommendation-box-btn {
+    background: #ffffff;
+    border-radius: 37px;
+    padding: 6px 18px;
+    height: min-content;
+    cursor: pointer;
+}
+
+.activity-recommendation-box-btn-archieve {
     background: #ffffff;
     border-radius: 37px;
     padding: 6px 18px;
@@ -168,7 +177,7 @@ form {
     margin: 25px auto;
     width: 100%;
     overflow-x: scroll;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     display: flex;
     flex-direction: row;
@@ -220,4 +229,3 @@ body
         max-width: 90vw;
     }
 }
-
