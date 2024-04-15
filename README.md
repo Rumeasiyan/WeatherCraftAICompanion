@@ -51,7 +51,8 @@ cd WeatherCraftAICompanion
 
 ```bash
 composer install
-npm install && npm run dev
+npm install
+npm run dev
 ```
 
 3. **Set Up Environment Variables:**
