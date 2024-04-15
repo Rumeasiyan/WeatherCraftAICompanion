@@ -51,11 +51,16 @@ cd WeatherCraftAICompanion
 
 ```bash
 composer install
+npm install && npm run dev
 ```
 
 3. **Set Up Environment Variables:**
 
 Duplicate the `.env.example` file and rename it to `.env`. Update the necessary environment variables such as database credentials and API keys.
+- Update the following environment variables with your API keys:
+     - `WEATHER_API_KEY`: Get from [OpenWeatherMap](https://openweathermap.org/).
+     - `WEATHER_CITY_KEY`: Get from [IPinfo](https://ipinfo.io/).
+     - `GOOGLE_GEMINI_KEY`: Get from [Google AI](https://ai.google.dev/).
 
 4. **Generate Application Key:**
 
