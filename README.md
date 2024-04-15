@@ -15,24 +15,24 @@ Traditional weather applications fail to assist tourists in planning alternative
 
 ## Features
 
-**Location-Based Weather Display:** Automatically displays current weather data based on user's location using ipinfo API, GeoCoder API, and OpenWeatherMap's Current Weather API.
-**5-Day Weather Forecast:** Display the 5-day weather forecast using "3-Hour Forecast 5-Days" API from OpenWeatherMap for the user's detected location.
-**Activity Recommendations:** Displays the recommended activities based on the location and weather data using Google Gemini API.
-**Customizable Location:** Allow users to access weather information, forecasts, and recommended activities for their preferred locations.
-**Save Activities:** Allow users to save recommended activities in their profile.
+**Location-Based Weather Display:** Automatically displays current weather data based on user's location using ipinfo API, GeoCoder API, and OpenWeatherMap's Current Weather API. <br />
+**5-Day Weather Forecast:** Display the 5-day weather forecast using "3-Hour Forecast 5-Days" API from OpenWeatherMap for the user's detected location. <br />
+**Activity Recommendations:** Displays the recommended activities based on the location and weather data using Google Gemini API. <br />
+**Customizable Location:** Allow users to access weather information, forecasts, and recommended activities for their preferred locations. <br />
+**Save Activities:** Allow users to save recommended activities in their profile. <br />
 
 ## Technology Selection
 
-**LARAVEL** (blade, breeze)
-**FRONTEND** (HTML, CSS, JavaScript) 
-**TAILWIND CSS**
-**MySQL**
+**LARAVEL** (blade, breeze) <br />
+**FRONTEND** (HTML, CSS, JavaScript)  <br />
+**TAILWIND CSS** <br />
+**MySQL** <br />
 
 ## API Selection
 
-**GOOGLE GEMINI API**
-**OPENWEATHERMAP API** (current weather, 3-hour forecast 5-days, geocoder API)
-**IPINFO**
+**GOOGLE GEMINI API** <br />
+**OPENWEATHERMAP API** (current weather, 3-hour forecast 5-days, geocoder API) <br />
+**IPINFO** <br />
 
 ## System Flow
 
