@@ -187,17 +187,18 @@ async function weatherForecast(dataWeatherForecast) {
 // refernece: https://ai.google.dev/tutorials/rest_quickstart
 
 async function activityRecommendation(dataWeather, cityName) {
+    const temp = Math.round(dataWeather.main.temp - 273.15);
+    const location = cityName;
+    const condition = dataWeather.weather[0].description;
+    const windSpeed = dataWeather.wind.speed;
+    const humidity = dataWeather.main.humidity;
+
+    const AiApiKey = googleAPIKey;
+    const AIUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${AiApiKey}`;
+
+    let activityResponse;
     try {
-        const temp = Math.round(dataWeather.main.temp - 273.15);
-        const location = cityName;
-        const condition = dataWeather.weather[0].description;
-        const windSpeed = dataWeather.wind.speed;
-        const humidity = dataWeather.main.humidity;
-
-        const AiApiKey = googleAPIKey;
-        const AIUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${AiApiKey}`;
-
-        const activityResponse = await fetch(AIUrl, {
+        activityResponse = await fetch(AIUrl, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -225,73 +226,81 @@ async function activityRecommendation(dataWeather, cityName) {
                 ],
             }),
         });
+    } catch (error) {
+        console.error(error);
+        const errorTextRec = document.querySelectorAll(".danger-text-rec")[0];
+        errorTextRec.classList.remove("hidden");
+    }
 
-        const activityData = await activityResponse.json();
-        console.log(activityData);
+    const activityData = await activityResponse.json();
+    console.log(activityData);
 
-        // console.log(activityData.candidates[0]);
-        // console.log(activityData.candidates[0].content);
-        // console.log(activityData.candidates[0].content.parts[0]);
-        // console.log(activityData.candidates[0].content.parts[0].text);
+    // console.log(activityData.candidates[0]);
+    // console.log(activityData.candidates[0].content);
+    // console.log(activityData.candidates[0].content.parts[0]);
+    // console.log(activityData.candidates[0].content.parts[0].text);
 
-        const activitiesTextFormat =
-            activityData.candidates[0].content.parts[0].text;
+    const activitiesTextFormat =
+        activityData.candidates[0].content.parts[0].text;
 
-        const activitiesTextFormatTwo = activitiesTextFormat.slice(8, -4);
-        //replace the escape characters and \n
-        const activitiesTextFormatThree = activitiesTextFormatTwo.replace(
-            /\\n/g,
-            ""
-        );
-        //remove all \ in the string
-        const activitiesTextFormatFour = activitiesTextFormatThree.replace(
-            /\\/g,
-            ""
-        );
+    const activitiesTextFormatTwo = activitiesTextFormat.slice(8, -4);
+    //replace the escape characters and \n
+    const activitiesTextFormatThree = activitiesTextFormatTwo.replace(
+        /\\n/g,
+        ""
+    );
+    //remove all \ in the string
+    const activitiesTextFormatFour = activitiesTextFormatThree.replace(
+        /\\/g,
+        ""
+    );
 
-        // console.log(activitiesTextFormatTwo);
-        console.log(activitiesTextFormatThree);
+    // console.log(activitiesTextFormatTwo);
+    console.log(activitiesTextFormatThree);
+    let activitiesText;
+    try {
+        activitiesText = JSON.parse(activitiesTextFormatTwo);
+        const errorTextwait = document.querySelectorAll(".danger-text-wait")[0];
+        errorTextwait.classList.add("hidden");
+    } catch (error) {
+        console.error("wait" + error);
+        const errorTextwait = document.querySelectorAll(".danger-text-wait")[0];
+        errorTextwait.classList.remove("hidden");
+        activityRecommendation(dataWeather, cityName);
+    }
 
-        const activitiesText = JSON.parse(activitiesTextFormatTwo);
-        // console.log(activitiesText);
-        console.log(activitiesText.activities);
+    // console.log(activitiesText);
+    console.log(activitiesText.activities);
 
-        const activityRecommendationGroup = document.querySelectorAll(
-            ".activity-recommedation-box-group"
-        )[0];
+    const activityRecommendationGroup = document.querySelectorAll(
+        ".activity-recommedation-box-group"
+    )[0];
 
-        activityRecommendationGroup.innerHTML = "";
+    activityRecommendationGroup.innerHTML = "";
 
-        for (let i = 0; i < activitiesText.activities.length; i += 1) {
-            const activity = activitiesText.activities[i].activity;
-            const description = activitiesText.activities[i].description;
+    for (let i = 0; i < activitiesText.activities.length; i += 1) {
+        const activity = activitiesText.activities[i].activity;
+        const description = activitiesText.activities[i].description;
 
-            const activityRecommendationBox = document.createElement("div");
-            activityRecommendationBox.classList.add(
-                "activity-recomendation-box"
-            );
-            activityRecommendationBox.classList.add("justify-around");
-            activityRecommendationBox.classList.add("flex");
+        const activityRecommendationBox = document.createElement("div");
+        activityRecommendationBox.classList.add("activity-recomendation-box");
+        activityRecommendationBox.classList.add("justify-around");
+        activityRecommendationBox.classList.add("flex");
 
-            activityRecommendationBox.innerHTML = `
+        activityRecommendationBox.innerHTML = `
         <div class="activity-recomendation-box-text">
             <div class="activity-recomendation-box-title font-bold">${activity}</div>
             <div class="activity-recomendation-box-content">${description}</div>
         </div>
         <div class="activity-recommendation-box-btn">SAVE</div>
         `;
-            activityRecommendationGroup.appendChild(activityRecommendationBox);
-        }
-
-        const loaderai = document.querySelectorAll(".loader-ai")[0];
-        loaderai.style.filter = "none";
-
-        addEventListenerstoSaveBtn();
-    } catch (error) {
-        console.error(error);
-        const errorTextRec = document.querySelectorAll(".danger-text-rec")[0];
-        errorTextRec.classList.remove("hidden");
+        activityRecommendationGroup.appendChild(activityRecommendationBox);
     }
+
+    const loaderai = document.querySelectorAll(".loader-ai")[0];
+    loaderai.style.filter = "none";
+
+    addEventListenerstoSaveBtn();
 }
 
 async function addEventListenerstoSaveBtn() {

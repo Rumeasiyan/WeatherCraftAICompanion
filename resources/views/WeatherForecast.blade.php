@@ -180,6 +180,9 @@
                     <div class="w-full text-center text-red-900 danger-text-rec font-bold hidden">
                         !! ERROR FETCHING RECOMMENDATION DATA, TRY AGAIN
                     </div>
+                    <div class="w-full text-center text-red-900 danger-text-wait font-bold hidden">
+                        !! PLEASE WAIT A MOMENT. FETCHING RECOMMENDATION DATA
+                    </div>
                 </div>
 
                 <div class="activity-recommedation-box-group loader loader-ai">
