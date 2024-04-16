@@ -4,9 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\weatherForecastController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+Route::get('/', [weatherForecastController::class, 'index'])->middleware(['auth', 'verified'])->name('WeatherForecast');
 
 // Route::get('/WeatherForecast', function () {
 //     return view('WeatherForecast');
