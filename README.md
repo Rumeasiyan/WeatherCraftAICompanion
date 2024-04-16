@@ -7,6 +7,8 @@
 
 ### Weather Craft AI Companion
 
+**Live Application Link: [WeatherCraftAICompanion Live](https://weathercraft.rumeasiyan.com/)**
+
 Weather Craft AI Companion is an AI-powered weather application designed to provide users with necessary weather information for their preferred locations and recommended activities based on the area and weather conditions.
 
 ## Solved Problem
